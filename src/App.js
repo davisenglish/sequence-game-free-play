@@ -150,8 +150,8 @@ export default function WordPuzzleGame() {
     (async () => {
       setLetters(await getRandomLetters());
     })();
-    // Load stats from localStorage
-    const savedStats = localStorage.getItem('sequenceGameStats');
+    // Load stats from localStorage with version-specific key
+    const savedStats = localStorage.getItem('sequenceGameFreePlayStats');
     if (savedStats) {
       setStats(JSON.parse(savedStats));
     }
@@ -234,7 +234,7 @@ export default function WordPuzzleGame() {
       }
       
       setStats(newStats);
-      localStorage.setItem('sequenceGameStats', JSON.stringify(newStats));
+      localStorage.setItem('sequenceGameFreePlayStats', JSON.stringify(newStats));
     }
     
     setRoundStarted(false);
@@ -331,30 +331,30 @@ export default function WordPuzzleGame() {
       newStats.mostWords = newStats.mostWords.slice(0, 3); // Keep top 3
     }
     
-    setStats(newStats);
-    localStorage.setItem('sequenceGameStats', JSON.stringify(newStats));
-    
-    // Store the current round's score for highlighting
-    localStorage.setItem('currentRoundScore', score.toString());
-    
-    // Store the current round's longest word for highlighting
-    if (validWords.length > 0) {
-      // Sort all words from this round by length (descending)
-      const sortedWordsThisRound = [...validWords].sort((a, b) => b.length - a.length);
+          setStats(newStats);
+      localStorage.setItem('sequenceGameFreePlayStats', JSON.stringify(newStats));
       
-      // Store all words from this round for highlighting
-      localStorage.setItem('currentRoundLongestWords', JSON.stringify(
-        sortedWordsThisRound.map(wordData => ({
-          word: wordData.word,
-          length: wordData.length
-        }))
-      ));
-    }
+      // Store the current round's score for highlighting
+      localStorage.setItem('currentRoundFreePlayScore', score.toString());
     
-    // Store the current round's word count for highlighting
-    if (validWords.length > 0) {
-      localStorage.setItem('currentRoundWordCount', validWords.length.toString());
-    }
+          // Store the current round's longest word for highlighting
+      if (validWords.length > 0) {
+        // Sort all words from this round by length (descending)
+        const sortedWordsThisRound = [...validWords].sort((a, b) => b.length - a.length);
+        
+        // Store all words from this round for highlighting
+        localStorage.setItem('currentRoundFreePlayLongestWords', JSON.stringify(
+          sortedWordsThisRound.map(wordData => ({
+            word: wordData.word,
+            length: wordData.length
+          }))
+        ));
+      }
+      
+      // Store the current round's word count for highlighting
+      if (validWords.length > 0) {
+        localStorage.setItem('currentRoundFreePlayWordCount', validWords.length.toString());
+      }
   };
 
   const handleInputChange = (e) => {
@@ -364,11 +364,11 @@ export default function WordPuzzleGame() {
   };
 
   const clearStats = () => {
-    // Clear all statistical data
-    localStorage.removeItem('sequenceGameStats');
-    localStorage.removeItem('currentRoundScore');
-    localStorage.removeItem('currentRoundLongestWords');
-    localStorage.removeItem('currentRoundWordCount');
+    // Clear all statistical data for this version only
+    localStorage.removeItem('sequenceGameFreePlayStats');
+    localStorage.removeItem('currentRoundFreePlayScore');
+    localStorage.removeItem('currentRoundFreePlayLongestWords');
+    localStorage.removeItem('currentRoundFreePlayWordCount');
     
     // Reset stats to initial state
     setStats({
@@ -689,7 +689,7 @@ export default function WordPuzzleGame() {
               <div className="space-y-2">
                 {[1, 2, 3, 4, 5].map((position) => {
                   const score = (stats.highestScores && stats.highestScores[position - 1]) || 0;
-                  const currentRoundScore = parseInt(localStorage.getItem('currentRoundScore') || '0');
+                  const currentRoundScore = parseInt(localStorage.getItem('currentRoundFreePlayScore') || '0');
                   const isCurrentRound = score === currentRoundScore && score > 0;
                   const maxScore = Math.max(...(stats.highestScores || []), 1);
                   const barWidth = score > 0 ? (score / maxScore) * 100 : 10;
@@ -723,7 +723,7 @@ export default function WordPuzzleGame() {
                 <div className="space-y-2">
                   {[1, 2, 3].map((position) => {
                     const longestWord = (stats.longestWords && stats.longestWords[position - 1]) || null;
-                    const currentRoundLongestWords = JSON.parse(localStorage.getItem('currentRoundLongestWords') || '[]');
+                    const currentRoundLongestWords = JSON.parse(localStorage.getItem('currentRoundFreePlayLongestWords') || '[]');
                     const isCurrentRound = longestWord && currentRoundLongestWords.some(currentWord => 
                       currentWord.word === longestWord.word && currentWord.length === longestWord.length
                     );
@@ -749,7 +749,7 @@ export default function WordPuzzleGame() {
                 <div className="space-y-2">
                   {[1, 2, 3].map((position) => {
                     const wordCount = (stats.mostWords && stats.mostWords[position - 1]) || null;
-                    const currentRoundWordCount = parseInt(localStorage.getItem('currentRoundWordCount') || '0');
+                    const currentRoundWordCount = parseInt(localStorage.getItem('currentRoundFreePlayWordCount') || '0');
                     const isCurrentRound = wordCount && wordCount === currentRoundWordCount;
                     
                     return (
