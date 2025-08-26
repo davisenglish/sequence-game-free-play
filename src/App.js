@@ -3,7 +3,7 @@
 // Drop this file into your React project and import/use <WordPuzzleGame />
 import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleInfo, faChartSimple, faCheckCircle, faTimesCircle, faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
+import { faChartSimple, faCheckCircle, faTimesCircle, faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
 import words from 'an-array-of-english-words';
 
 // Preprocess the word list once for performance, excluding certain suffixes
