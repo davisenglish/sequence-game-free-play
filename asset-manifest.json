@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/sequence-game-free-play/static/css/main.611d860d.css",
+    "main.js": "/sequence-game-free-play/static/js/main.7cdaa37f.js",
+    "static/js/453.96453769.chunk.js": "/sequence-game-free-play/static/js/453.96453769.chunk.js",
+    "index.html": "/sequence-game-free-play/index.html",
+    "main.611d860d.css.map": "/sequence-game-free-play/static/css/main.611d860d.css.map",
+    "main.7cdaa37f.js.map": "/sequence-game-free-play/static/js/main.7cdaa37f.js.map",
+    "453.96453769.chunk.js.map": "/sequence-game-free-play/static/js/453.96453769.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.611d860d.css",
+    "static/js/main.7cdaa37f.js"
+  ]
+}
