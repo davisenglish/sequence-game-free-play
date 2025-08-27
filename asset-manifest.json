@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/sequence-game-free-play/static/css/main.611d860d.css",
-    "main.js": "/sequence-game-free-play/static/js/main.903a9326.js",
+    "main.css": "/sequence-game-free-play/static/css/main.8941adea.css",
+    "main.js": "/sequence-game-free-play/static/js/main.d484a286.js",
     "static/js/453.96453769.chunk.js": "/sequence-game-free-play/static/js/453.96453769.chunk.js",
     "index.html": "/sequence-game-free-play/index.html",
-    "main.611d860d.css.map": "/sequence-game-free-play/static/css/main.611d860d.css.map",
-    "main.903a9326.js.map": "/sequence-game-free-play/static/js/main.903a9326.js.map",
+    "main.8941adea.css.map": "/sequence-game-free-play/static/css/main.8941adea.css.map",
+    "main.d484a286.js.map": "/sequence-game-free-play/static/js/main.d484a286.js.map",
     "453.96453769.chunk.js.map": "/sequence-game-free-play/static/js/453.96453769.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.611d860d.css",
-    "static/js/main.903a9326.js"
+    "static/css/main.8941adea.css",
+    "static/js/main.d484a286.js"
   ]
 }
